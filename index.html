@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A playful interactive digital playground." />
+  <title>VOID — Digital Playground</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="cursor-glow" id="glow"></div>
+
+  <nav>
+    <a class="logo" href="#top">VOID<span>.</span></a>
+    <div class="nav-links">
+      <a href="#work">Experiments</a>
+      <a href="#about">About</a>
+    </div>
+    <button id="chaosButton" class="mini-button">ADD CHAOS</button>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">A tiny corner of the internet // 2026</p>
+      <h1>MAKE THE<br><em>WEB</em> WEIRD<br>AGAIN.</h1>
+      <div class="hero-bottom">
+        <p>Not everything needs to convert.<br>Some things can just be <strong>cool.</strong></p>
+        <a class="circle-link" href="#work" aria-label="Explore experiments">↓</a>
+      </div>
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
+    </section>
+
+    <section class="marquee" aria-hidden="true">
+      <div>DESIGN ✦ CODE ✦ MOTION ✦ IDEAS ✦ DESIGN ✦ CODE ✦ MOTION ✦ IDEAS ✦</div>
+    </section>
+
+    <section class="work" id="work">
+      <div class="section-heading">
+        <span>01 / EXPERIMENTS</span>
+        <h2>Things worth<br>clicking.</h2>
+      </div>
+
+      <div class="cards">
+        <article class="card card-acid tilt">
+          <span class="number">001</span>
+          <div class="card-symbol">✳</div>
+          <h3>CHAOS<br>ENGINE</h3>
+          <p>Press the button. Question your decisions.</p>
+          <button class="card-action" id="engineButton">ACTIVATE ↗</button>
+        </article>
+
+        <article class="card card-dark tilt">
+          <span class="number">002</span>
+          <div class="pixel-face" aria-hidden="true"><i></i><i></i><b></b></div>
+          <h3>MOOD<br>MACHINE</h3>
+          <p id="moodText">Current mood: suspiciously productive.</p>
+          <button class="card-action" id="moodButton">NEW MOOD ↗</button>
+        </article>
+
+        <article class="card card-light tilt">
+          <span class="number">003</span>
+          <div class="big-arrow">↗</div>
+          <h3>DO<br>SOMETHING</h3>
+          <p>A scientifically questionable cure for boredom.</p>
+          <button class="card-action" id="ideaButton">GIVE ME ONE ↗</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <p class="eyebrow">02 / MANIFESTO</p>
+      <p class="manifesto">The internet got <span>too polished.</span> This is a reminder that websites can have personality, surprise you, and occasionally make absolutely no sense.</p>
+      <div class="status"><span></span> Currently online & making things</div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#top">VOID<span>.</span></a>
+    <p>Built for fun. No cookies were harmed.</p>
+    <p>© 2026</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
