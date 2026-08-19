@@ -1,0 +1,21 @@
+name: GameHub QA
+on:
+  pull_request:
+  push:
+    branches:
+      - agent/category-grid-redesign
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: |
+          for f in gamehub.js expansion.js advanced-games.js advanced-pack.js advanced-worlds.js catalog.js stability.js; do
+            node --check "$f"
+          done
+      - name: Static smoke tests
+        run: node qa-smoke.mjs
