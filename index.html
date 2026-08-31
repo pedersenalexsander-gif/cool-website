@@ -1,1 +1,161 @@
-<!doctype html><html lang="no"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="VOID GameHub — distinct browser games, categories, records, coins and progression."><title>VOID GameHub</title><link rel="stylesheet" href="gamehub.css"><link rel="stylesheet" href="expansion.css"><link rel="stylesheet" href="advanced-pack.css"><link rel="stylesheet" href="advanced-worlds.css"><link rel="stylesheet" href="unique-games.css"><link rel="stylesheet" href="portal.css"></head><body class="portal-body"><div class="noise"></div><aside class="portal-sidebar"><a class="portal-logo" href="#top">🎮</a><div class="rail-divider"></div><a class="rail-btn active" href="#top" title="Home">⌂</a><a class="rail-btn" href="#library" title="Games">▦</a><a class="rail-btn" href="#library" title="Trending">🔥</a><a class="rail-btn" href="#library" title="Racing">🏁</a><a class="rail-btn" href="#library" title="Strategy">♟</a><a class="rail-btn" href="#library" title="Brain">🧠</a><a class="rail-btn" href="#leaderboard" title="Leaderboard">🏆</a><div class="rail-divider"></div><a class="rail-btn" href="#profile" title="Profile">●</a></aside><div class="portal-shell" id="top"><header class="portal-top"><div class="portal-brand">VOID<span>//</span>HUB</div><label class="portal-search"><input id="portalSearch" placeholder="Søk etter spill og kategorier..." autocomplete="off"><span class="search-icon">⌕</span></label><div class="portal-account"><span class="pill coin" id="coins">🪙 250</span><span class="pill xp" id="xp">LVL 1</span><input class="profile-name" id="profileName" value="Player One" aria-label="Player name"><div class="avatar">V</div></div></header><main class="portal-main"><section class="portal-hero"><article class="featured-game"><div class="featured-copy"><span class="featured-label">✦ Featured game</span><h1 id="featuredName">Loading...</h1><p id="featuredDesc">Et av de største spillene i huben.</p><div class="featured-actions"><button class="portal-play" id="featuredPlay">▶ PLAY NOW</button><a class="portal-ghost" href="#library" style="text-decoration:none">BROWSE GAMES</a></div></div><div class="featured-art" id="featuredIcon">🎮</div></article><aside class="continue-card" id="continueCard"><span class="featured-label">Continue playing</span><div class="continue-preview"><span id="continueIcon">⚡</span></div><h3 id="continueName">Start your first game</h3><p>Nylig spilte spill dukker opp her automatisk.</p><button class="portal-play" id="continuePlay">CONTINUE</button></aside></section><section id="library"><div class="portal-section-head"><div><h2>Explore games</h2><p>Egne spillmotorer med ulike regler, mål og kontroller.</p></div></div><div class="portal-filters"><button class="portal-filter active" data-filter="All">Alle</button><button class="portal-filter" data-filter="Arcade">Action</button><button class="portal-filter" data-filter="Skill">Ferdighet</button><button class="portal-filter" data-filter="Strategy">Strategi</button><button class="portal-filter" data-filter="Brain">Tenkespill</button><button class="portal-filter" data-filter="Puzzle">Puzzle</button><button class="portal-filter" data-filter="Reflex">Refleks</button><button class="portal-filter" data-filter="Memory">Minne</button><button class="portal-filter" data-filter="Perception">Observasjon</button><button class="portal-filter" data-filter="Risk">Risk</button><button class="portal-filter" data-filter="Luck">Flaks</button></div><div id="portalContent"></div><div id="games" hidden></div></section><section class="portal-lower" id="profile"><div class="portal-panel" id="leaderboard"><h3>Leaderboard</h3><div id="leaders"></div></div><div class="portal-panel"><h3>Din profil</h3><div class="portal-stats"><div class="portal-stat"><b id="level">1</b><small>Level</small></div><div class="portal-stat"><b id="plays">0</b><small>Games</small></div><div class="portal-stat"><b id="wins">0</b><small>Wins</small></div><div class="portal-stat"><b id="records">0</b><small>Records</small></div></div><div class="progress" style="margin-top:14px"><i id="progress"></i></div><div id="achievements" class="achievements" style="margin-top:14px"></div><button class="secondary danger" id="reset" style="margin-top:14px">RESET PROGRESS</button></div></section><div id="achievements-section"></div><div class="portal-footer">VOID//HUB · distinct game engines · local progression · no installs</div></main></div><div class="modal" id="modal"><div class="game-window"><div class="game-header"><div><h2 id="gameTitle">Game</h2></div><button class="close" id="closeGame">×</button></div><div class="game-body"><div class="game-stage" id="stage"></div></div></div></div><div class="toast" id="toast"></div><script src="gamehub.js"></script><script src="expansion.js"></script><script src="advanced-games.js"></script><script src="advanced-pack.js"></script><script src="advanced-worlds.js"></script><script src="unique-games.js"></script><script src="stability.js"></script><script src="portal.js"></script></body></html>
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Prototype på digital baderomsrådgiver for Ofoten Rør i Narvik.">
+  <title>Ofoten Rør | Digital baderomsrådgiver</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="advisor.css">
+</head>
+<body>
+  <div class="demo-bar">PROTOTYPE · DIGITAL BADEROMSRÅDGIVER</div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Ofoten Rør">
+      <div class="brand-mark">OR</div>
+      <div><strong>OFOTEN RØR</strong><span>Narvik</span></div>
+    </a>
+    <nav>
+      <a href="#slik">Slik fungerer det</a>
+      <a href="#trygghet">Om løsningen</a>
+      <a href="https://www.ofotenror.no/" target="_blank" rel="noreferrer">Ofotenror.no ↗</a>
+    </nav>
+    <a class="header-cta" href="#radgiver">Planlegg badet</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> DIGITAL RÅDGIVER · ÅPEN HELE DØGNET</div>
+        <h1>Fra bad-idé til en<br><em>konkret plan.</em></h1>
+        <p class="lead">Fortell oss hva du ser for deg. Rådgiveren kartlegger behovene dine og lager et personlig utgangspunkt med løsning, kostnadsnivå, fremdrift og neste steg.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#radgiver">Start planleggingen <b>→</b></a>
+          <a class="btn ghost" href="#slik">Se hvordan det fungerer</a>
+        </div>
+        <div class="trust-row">
+          <div><strong>40+ år</strong><span>i Narvik</span></div>
+          <div><strong>Totalbad</strong><span>ett kontaktpunkt</span></div>
+          <div><strong>3D</strong><span>tegning av badet</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="advisor-preview">
+          <div class="preview-head">
+            <div class="bot-avatar">OR</div>
+            <div><strong>Badassistenten</strong><span><i></i> Klar til å hjelpe</span></div>
+          </div>
+          <div class="bubble bot">Hei! Jeg kan hjelpe deg å planlegge nytt bad. Hva er viktigst for deg?</div>
+          <div class="quick-pills"><span>Enkel rengjøring</span><span>God oppbevaring</span><span>Moderne uttrykk</span></div>
+          <div class="bubble user">Vi er en familie på fire og vil totalrenovere et bad på ca. 7 m².</div>
+          <div class="typing"><b></b><b></b><b></b></div>
+          <div class="preview-result">
+            <span>PERSONLIG FORSLAG</span>
+            <strong>Familiebad · 7 m²</strong>
+            <small>Dusjsone · dobbel servant · gulvvarme · oppbevaring</small>
+          </div>
+        </div>
+        <div class="float-card"><span>✓</span><div><b>Komplett prosess</b><small>Rør · elektro · flis · snekker</small></div></div>
+      </div>
+    </section>
+
+    <section class="how" id="slik">
+      <div class="section-heading"><span>EN ENKLERE START</span><h2>Du trenger ikke vite alt på forhånd.</h2><p>Rådgiveren stiller de samme grunnspørsmålene en fagperson trenger for å forstå prosjektet.</p></div>
+      <div class="steps">
+        <article><b>01</b><h3>Fortell om badet</h3><p>Størrelse, dagens løsning, hvem som bruker det og hva du ønsker å endre.</p></article>
+        <article><b>02</b><h3>Velg behov og stil</h3><p>Prioriter funksjoner, uttrykk, budsjett og ønsket tidspunkt.</p></article>
+        <article><b>03</b><h3>Få din badplan</h3><p>Se anbefalt løsning, et veiledende kostnadsnivå og hvordan prosjektet kan gjennomføres.</p></article>
+      </div>
+    </section>
+
+    <section class="advisor-section" id="radgiver">
+      <div class="advisor-shell">
+        <aside class="advisor-side">
+          <span class="side-kicker">OFOTEN RØR</span>
+          <h2>Planlegg ditt nye bad</h2>
+          <p>Svar på noen få spørsmål. Du får et personlig forslag på slutten.</p>
+          <div class="progress-list" id="progressList">
+            <div class="progress-item active" data-step="1"><i>1</i><span><b>Prosjektet</b><small>Hva skal gjøres?</small></span></div>
+            <div class="progress-item" data-step="2"><i>2</i><span><b>Behov</b><small>Hva er viktig?</small></span></div>
+            <div class="progress-item" data-step="3"><i>3</i><span><b>Stil & nivå</b><small>Hvordan skal det bli?</small></span></div>
+            <div class="progress-item" data-step="4"><i>4</i><span><b>Din plan</b><small>Personlig forslag</small></span></div>
+          </div>
+          <div class="side-help"><span>?</span><div><b>Usikker på et svar?</b><small>Velg det som passer best. Alt kan avklares på befaring.</small></div></div>
+        </aside>
+
+        <div class="advisor-main">
+          <div class="step-pane active" data-pane="1">
+            <div class="step-top"><span>STEG 1 AV 3</span><strong>Fortell litt om prosjektet</strong><p>Dette gir oss et utgangspunkt for anbefalingen.</p></div>
+            <div class="field-group">
+              <label>Hva ønsker du å gjøre?</label>
+              <div class="option-grid cols-2" data-single="projectType">
+                <button class="option selected" data-value="Totalrenovere eksisterende bad"><span>🛁</span><b>Totalrenovere bad</b><small>Rive og bygge opp på nytt</small></button>
+                <button class="option" data-value="Bygge nytt bad"><span>＋</span><b>Bygge nytt bad</b><small>Nytt bad i boligen</small></button>
+              </div>
+            </div>
+            <div class="two-fields">
+              <div class="field-group"><label>Omtrent hvor stort er badet?</label><div class="select-wrap"><select id="size"><option value="4">Under 5 m²</option><option value="6" selected>5–7 m²</option><option value="8">7–9 m²</option><option value="10">9–12 m²</option><option value="13">Over 12 m²</option></select></div></div>
+              <div class="field-group"><label>Boligtype</label><div class="select-wrap"><select id="home"><option>Enebolig</option><option>Rekkehus</option><option>Leilighet</option><option>Hytte/fritidsbolig</option></select></div></div>
+            </div>
+            <div class="field-group"><label>Beskriv kort hva du ønsker <small>(valgfritt)</small></label><textarea id="freeText" placeholder="F.eks. Vi er en familie på fire. Vi vil ha et lyst, praktisk bad med god oppbevaring, stor dusj og helst dobbel servant."></textarea></div>
+            <div class="nav-row"><span></span><button class="btn primary next" data-next="2">Neste: behov <b>→</b></button></div>
+          </div>
+
+          <div class="step-pane" data-pane="2">
+            <div class="step-top"><span>STEG 2 AV 3</span><strong>Hva trenger dere på badet?</strong><p>Velg alt som er aktuelt. Rådgiveren bruker dette til å sette sammen løsningen.</p></div>
+            <div class="field-group"><label>Funksjoner</label><div class="option-grid cols-3 multi" id="features">
+              <button class="option selected" data-value="Dusj med glassvegger"><span>🚿</span><b>Stor dusj</b></button>
+              <button class="option" data-value="Badekar"><span>🛁</span><b>Badekar</b></button>
+              <button class="option selected" data-value="Dobbel servant"><span>◫</span><b>Dobbel servant</b></button>
+              <button class="option selected" data-value="Gulvvarme"><span>♨</span><b>Gulvvarme</b></button>
+              <button class="option" data-value="Vaskemaskin og tørketrommel"><span>▣</span><b>Vaskesone</b></button>
+              <button class="option selected" data-value="Ekstra oppbevaring"><span>▤</span><b>Oppbevaring</b></button>
+            </div></div>
+            <div class="field-group"><label>Hvem bruker badet mest?</label><div class="option-grid cols-3 compact" data-single="users"><button class="option" data-value="1–2 personer"><b>1–2 personer</b></button><button class="option selected" data-value="Familie"><b>Familie</b></button><button class="option" data-value="Gjester"><b>Gjester</b></button></div></div>
+            <div class="field-group"><label>Hva er viktigst? <small>Velg inntil 3</small></label><div class="chips multi" id="priorities"><button class="selected" data-value="Enkel rengjøring">Enkel rengjøring</button><button class="selected" data-value="God oppbevaring">God oppbevaring</button><button data-value="Mest mulig plass">Mest mulig plass</button><button data-value="Eksklusivt uttrykk">Eksklusivt uttrykk</button><button class="selected" data-value="Holdbare løsninger">Holdbare løsninger</button><button data-value="Lavest mulig kostnad">Lavest mulig kostnad</button></div></div>
+            <div class="nav-row"><button class="btn ghost back" data-back="1">← Tilbake</button><button class="btn primary next" data-next="3">Neste: stil & nivå <b>→</b></button></div>
+          </div>
+
+          <div class="step-pane" data-pane="3">
+            <div class="step-top"><span>STEG 3 AV 3</span><strong>Hvilket uttrykk og nivå ser du for deg?</strong><p>Dette brukes kun for å lage et veiledende første forslag – ikke et bindende tilbud.</p></div>
+            <div class="field-group"><label>Hvilken stil liker du best?</label><div class="style-grid" data-single="style">
+              <button class="style-card selected" data-value="Lys nordisk"><div class="swatch nordic"><i></i></div><b>Lys nordisk</b><small>Lyst, rolig og tidløst</small></button>
+              <button class="style-card" data-value="Mørk moderne"><div class="swatch dark"><i></i></div><b>Mørk moderne</b><small>Kontraster og mørke detaljer</small></button>
+              <button class="style-card" data-value="Varm natur"><div class="swatch warm"><i></i></div><b>Varm natur</b><small>Tretoner og myke flater</small></button>
+            </div></div>
+            <div class="field-group"><label>Ønsket investeringsnivå</label><div class="budget-grid" data-single="budget"><button class="option" data-value="smart"><b>Smart</b><small>Fokus på funksjon og gode standardvalg</small></button><button class="option selected" data-value="comfort"><b>Komfort</b><small>Mer design, oppbevaring og fleksibilitet</small></button><button class="option" data-value="premium"><b>Premium</b><small>Eksklusive materialer og flere tilvalg</small></button></div></div>
+            <div class="two-fields">
+              <div class="field-group"><label>Når ønsker du å komme i gang?</label><div class="select-wrap"><select id="timing"><option>Så snart som mulig</option><option selected>Innen 3–6 måneder</option><option>Innen 6–12 måneder</option><option>Bare i planleggingsfasen</option></select></div></div>
+              <div class="field-group"><label>Postnummer</label><input id="postal" inputmode="numeric" maxlength="4" placeholder="F.eks. 8514"></div>
+            </div>
+            <div class="nav-row"><button class="btn ghost back" data-back="2">← Tilbake</button><button class="btn primary generate" id="generate">Lag min badplan <b>✦</b></button></div>
+          </div>
+
+          <div class="step-pane result-pane" data-pane="4">
+            <div class="result-head"><div><span>DIN PERSONLIGE BADPLAN</span><h2 id="resultTitle">Et praktisk familiebad</h2><p>Basert på svarene dine har vi satt sammen et realistisk utgangspunkt du kan ta med videre til befaring.</p></div><div class="match"><b id="matchScore">94%</b><span>løsningsmatch</span></div></div>
+            <div class="summary-strip" id="summaryStrip"></div>
+            <div class="result-grid">
+              <article class="result-card solution"><div class="card-label">ANBEFALT LØSNING</div><h3 id="solutionName">Komfort familiebad</h3><p id="solutionIntro"></p><div class="feature-list" id="resultFeatures"></div></article>
+              <article class="result-card estimate"><div class="card-label">VEILEDENDE PROSJEKTNIVÅ</div><div class="price" id="priceRange">—</div><p>Illustrativt nivå for prototypen. Endelig pris krever befaring, valg av produkter og teknisk vurdering.</p><div class="estimate-bars"><div><span>Arbeid & koordinering</span><i style="--w:78%"></i></div><div><span>Produkter & innredning</span><i style="--w:64%"></i></div><div><span>Flis, overflater & tilvalg</span><i style="--w:52%"></i></div></div></article>
+            </div>
+            <article class="timeline-card"><div class="card-label">SLIK KAN PROSESSEN SE UT</div><h3>Fra idé til ferdig bad</h3><div class="timeline"><div><i>1</i><b>Behovsavklaring</b><span>Planen du lager her</span></div><div><i>2</i><b>Befaring</b><span>Teknisk vurdering hjemme</span></div><div><i>3</i><b>3D & produktvalg</b><span>Utforming og materialer</span></div><div><i>4</i><b>Tilbud & plan</b><span>Omfang og fremdrift avklares</span></div><div><i>5</i><b>Gjennomføring</b><span>Fagene koordineres</span></div><div><i>6</i><b>Ferdig bad</b><span>Kontroll og overlevering</span></div></div></article>
+            <article class="ai-note"><div class="spark">✦</div><div><b>Rådgiverens vurdering</b><p id="aiNote"></p></div></article>
+            <div class="lead-card"><div><span>NESTE STEG</span><h3>Vil du gjøre planen virkelig?</h3><p>Send behovene videre som grunnlag for en uforpliktende prat og befaring med Ofoten Rør.</p></div><div class="lead-actions"><a class="btn primary" href="https://www.ofotenror.no/kontakt/" target="_blank" rel="noreferrer">Kontakt Ofoten Rør <b>→</b></a><button class="btn ghost" id="restart">Endre svar</button></div></div>
+            <p class="disclaimer">Dette er en demonstrasjonsprototype og ikke et offisielt pristilbud fra Ofoten Rør. Prisnivået er kun illustrativt. Faktisk løsning, pris og tidsbruk må vurderes av fagperson etter befaring.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="confidence" id="trygghet">
+      <div class="confidence-copy"><span>BYGGET RUNDT EN EKTE KUNDEREISE</span><h2>AI-en skal gjøre kunden bedre forberedt – ikke erstatte fagpersonen.</h2><p>Den beste løsningen er at rådgiveren samler inn behov, forklarer muligheter og gjør første del av salgsjobben. Fagpersonen overtar når prosjektet krever befaring, tekniske valg og bindende pris.</p></div>
+      <div class="confidence-list"><div><i>✓</i><span><b>Bedre kvalifiserte leads</b><small>Bedriften vet mer før første samtale.</small></span></div><div><i>✓</i><span><b>Rask oversikt for kunden</b><small>Behov, løsning og prosess samlet på ett sted.</small></span></div><div><i>✓</i><span><b>Trygge grenser for AI</b><small>Estimat merkes tydelig og faglige vurderinger eskaleres.</small></span></div></div>
+    </section>
+  </main>
+
+  <footer><div class="brand"><div class="brand-mark">OR</div><div><strong>OFOTEN RØR</strong><span>Digital rådgiver · prototype</span></div></div><p>Dronningensgate 18 · 8514 Narvik</p><a href="#top">Til toppen ↑</a></footer>
+  <script src="advisor.js"></script>
+</body>
+</html>
