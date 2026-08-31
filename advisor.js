@@ -1,63 +1,9 @@
 const state={projectType:'Totalrenovere eksisterende bad',users:'Familie',style:'Lys nordisk',budget:'comfort'};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-
-function bindSingle(group){
-  $(`[data-single="${group}"]`)?.addEventListener('click',e=>{
-    const btn=e.target.closest('button'); if(!btn)return;
-    $(`[data-single="${group}"]`).querySelectorAll('button').forEach(b=>b.classList.remove('selected'));
-    btn.classList.add('selected'); state[group]=btn.dataset.value;
-  });
-}
-['projectType','users','style','budget'].forEach(bindSingle);
-
-$$('.multi').forEach(group=>group.addEventListener('click',e=>{
-  const btn=e.target.closest('button'); if(!btn)return;
-  if(group.id==='priorities'&&!btn.classList.contains('selected')&&group.querySelectorAll('.selected').length>=3)return;
-  btn.classList.toggle('selected');
-}));
-
-function go(step){
-  $$('.step-pane').forEach(p=>p.classList.toggle('active',+p.dataset.pane===step));
-  $$('.progress-item').forEach(item=>{
-    const n=+item.dataset.step; item.classList.toggle('active',n===step); item.classList.toggle('done',n<step);
-    const circle=item.querySelector('i'); circle.textContent=n<step?'✓':n;
-  });
-  document.querySelector('.advisor-shell').scrollIntoView({behavior:'smooth',block:'start'});
-}
-$$('.next').forEach(b=>b.onclick=()=>go(+b.dataset.next));
-$$('.back').forEach(b=>b.onclick=()=>go(+b.dataset.back));
-
-function selectedValues(id){return $$(`#${id} .selected`).map(x=>x.dataset.value)}
-function formatNok(n){return new Intl.NumberFormat('nb-NO',{maximumFractionDigits:0}).format(n)+' kr'}
-
-$('#generate').onclick=()=>{
-  const size=+$('#size').value;
-  const home=$('#home').value;
-  const timing=$('#timing').value;
-  const text=$('#freeText').value.trim();
-  const features=selectedValues('features');
-  const priorities=selectedValues('priorities');
-  const levels={smart:{label:'Smart',base:220000,m2:12000},comfort:{label:'Komfort',base:275000,m2:15500},premium:{label:'Premium',base:350000,m2:21000}};
-  const lvl=levels[state.budget];
-  let center=lvl.base+(size*lvl.m2)+(features.length*3500);
-  if(state.projectType==='Bygge nytt bad')center+=35000;
-  const low=Math.round((center*.88)/10000)*10000, high=Math.round((center*1.18)/10000)*10000;
-  const styleNames={'Lys nordisk':'lyst og tidløst','Mørk moderne':'moderne med tydelige kontraster','Varm natur':'varmt og naturlig'};
-  const userText=state.users==='Familie'?'familiebad':state.users==='Gjester'?'gjestebad':'bad for 1–2 personer';
-  $('#resultTitle').textContent=`Et ${styleNames[state.style]} ${userText}`;
-  $('#solutionName').textContent=`${lvl.label} ${userText} · ca. ${size} m²`;
-  $('#solutionIntro').textContent=`Vi ville startet med en plan som prioriterer ${priorities.slice(0,2).join(' og ').toLowerCase()||'god funksjon'}. For ${state.users.toLowerCase()} gir det mening å holde sonene ryddige og velge løsninger som tåler daglig bruk.`;
-  $('#priceRange').textContent=`${formatNok(low)} – ${formatNok(high)}`;
-  $('#resultFeatures').innerHTML=features.map(f=>`<div>${f}</div>`).join('')||'<div>Funksjoner avklares på befaring</div>';
-  $('#summaryStrip').innerHTML=`<div><small>Prosjekt</small><b>${state.projectType}</b></div><div><small>Størrelse</small><b>Ca. ${size} m²</b></div><div><small>Bolig</small><b>${home}</b></div><div><small>Stil</small><b>${state.style}</b></div>`;
-  let note=`For et bad på rundt ${size} m² ville jeg først avklart plassering av sluk, vann og eksisterende tekniske forhold. `;
-  if(features.includes('Dobbel servant'))note+=`Dobbel servant er praktisk for flere brukere, men vi bør kontrollere at den ikke tar for mye av gangarealet. `;
-  if(features.includes('Badekar')&&features.includes('Dusj med glassvegger'))note+=`Siden du ønsker både badekar og dusj bør planløsningen vurderes nøye for å unngå et trangt rom. `;
-  if(priorities.includes('Enkel rengjøring'))note+=`Store, sammenhengende flater og færre vanskelige hjørner vil støtte ønsket om enklere rengjøring. `;
-  note+=`Neste fornuftige steg er en befaring før produkter, fast pris eller fremdrift låses.`;
-  if(text)note+=` Beskrivelsen din – «${text.slice(0,120)}${text.length>120?'…':''}» – bør tas med videre i behovsavklaringen.`;
-  $('#aiNote').textContent=note;
-  $('#matchScore').textContent=(90+Math.min(features.length,5))+'%';
-  go(4);
-};
-$('#restart').onclick=()=>go(1);
+function bindSingle(group){const el=$(`[data-single="${group}"]`);if(!el)return;el.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;el.querySelectorAll('button').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');state[group]=btn.dataset.value})}['projectType','users','style','budget'].forEach(bindSingle);
+$$('.multi').forEach(group=>group.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;if(group.id==='priorities'&&!btn.classList.contains('selected')&&group.querySelectorAll('.selected').length>=3)return;btn.classList.toggle('selected')}));
+function go(step){$$('.step-pane').forEach(p=>p.classList.toggle('active',+p.dataset.pane===step));$$('.progress-item').forEach(item=>{const n=+item.dataset.step;item.classList.toggle('active',n===step);item.classList.toggle('done',n<step);const c=item.querySelector('i');if(c)c.textContent=n<step?'✓':n});document.querySelector('.advisor-shell')?.scrollIntoView({behavior:'smooth',block:'start'})}
+$$('.next').forEach(b=>b.onclick=()=>go(+b.dataset.next));$$('.back').forEach(b=>b.onclick=()=>go(+b.dataset.back));
+function selectedValues(id){return $$(`#${id} .selected`).map(x=>x.dataset.value)}function formatNok(n){return new Intl.NumberFormat('nb-NO',{maximumFractionDigits:0}).format(n)+' kr'}
+function planSvg(size,features){const ratio=size<=4?1.25:size<=7?1.45:size<=9?1.3:1.15;const w=Math.round(Math.sqrt(size*ratio)*1000),h=Math.round(size/(w/1000)*1000);const shower=features.includes('Dusj med glassvegger');const bath=features.includes('Badekar');const dbl=features.includes('Dobbel servant');return `<div class="plan-title"><b>Skisse med veiledende mål</b><span>${w} × ${h} mm · ca. ${size} m²</span></div><svg viewBox="0 0 620 420" class="floorplan" role="img" aria-label="Veiledende plantegning"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#e6ece9" stroke-width="1"/></pattern></defs><rect x="80" y="55" width="450" height="300" fill="url(#grid)" stroke="#15383a" stroke-width="7"/><path d="M80 285h75v70" fill="none" stroke="#fff" stroke-width="10"/><path d="M82 285a70 70 0 0 1 70 70" fill="none" stroke="#7b8b89" stroke-width="2"/>${shower?'<rect x="355" y="75" width="150" height="115" rx="3" fill="#dfece8" stroke="#087566" stroke-width="2"/><text x="430" y="137" text-anchor="middle" font-size="15" fill="#15383a">DUSJ</text>':''}${bath?'<rect x="105" y="75" width="205" height="75" rx="25" fill="#eef3f1" stroke="#738582" stroke-width="2"/><text x="207" y="118" text-anchor="middle" font-size="14">BADEKAR</text>':''}<rect x="${dbl?330:390}" y="270" width="${dbl?175:115}" height="55" rx="3" fill="#f0e8dd" stroke="#7a746b"/><text x="${dbl?417:447}" y="302" text-anchor="middle" font-size="13">${dbl?'DOBBEL SERVANT':'SERVANT'}</text><ellipse cx="185" cy="235" rx="36" ry="47" fill="#fff" stroke="#738582" stroke-width="2"/><text x="185" y="240" text-anchor="middle" font-size="11">WC</text><line x1="80" y1="32" x2="530" y2="32" stroke="#647674"/><line x1="80" y1="24" x2="80" y2="40" stroke="#647674"/><line x1="530" y1="24" x2="530" y2="40" stroke="#647674"/><text x="305" y="23" text-anchor="middle" font-size="13">${w} mm</text><line x1="555" y1="55" x2="555" y2="355" stroke="#647674"/><line x1="547" y1="55" x2="563" y2="55" stroke="#647674"/><line x1="547" y1="355" x2="563" y2="355" stroke="#647674"/><text x="580" y="210" text-anchor="middle" font-size="13" transform="rotate(90 580 210)">${h} mm</text></svg><small>Konseptskisse generert fra kundens valg. Faktiske mål, sluk, rørføringer, dør/vindu og våtromskrav må kontrolleres ved befaring.</small></div>`}
+const generate=$('#generate');if(generate)generate.onclick=()=>{const size=+$('#size').value,home=$('#home').value,text=$('#freeText').value.trim(),features=selectedValues('features'),priorities=selectedValues('priorities');const levels={smart:{label:'Smart',base:220000,m2:12000},comfort:{label:'Komfort',base:275000,m2:15500},premium:{label:'Premium',base:350000,m2:21000}},lvl=levels[state.budget];let center=lvl.base+size*lvl.m2+features.length*3500;if(state.projectType==='Bygge nytt bad')center+=35000;const low=Math.round(center*.88/10000)*10000,high=Math.round(center*1.18/10000)*10000;const styleNames={'Lys nordisk':'lyst og tidløst','Mørk moderne':'moderne med tydelige kontraster','Varm natur':'varmt og naturlig'},userText=state.users==='Familie'?'familiebad':state.users==='Gjester'?'gjestebad':'bad for 1–2 personer';$('#resultTitle').textContent=`Et ${styleNames[state.style]} ${userText}`;$('#solutionName').textContent=`${lvl.label} ${userText} · ca. ${size} m²`;$('#solutionIntro').textContent=`Et funksjonelt utgangspunkt med fokus på ${priorities.slice(0,2).join(' og ').toLowerCase()||'god funksjon'}.`;$('#priceRange').textContent=`${formatNok(low)} – ${formatNok(high)}`;$('#resultFeatures').innerHTML=features.map(f=>`<div>${f}</div>`).join('')||'<div>Funksjoner avklares på befaring</div>';$('#summaryStrip').innerHTML=`<div><small>Prosjekt</small><b>${state.projectType}</b></div><div><small>Størrelse</small><b>Ca. ${size} m²</b></div><div><small>Bolig</small><b>${home}</b></div><div><small>Stil</small><b>${state.style}</b></div>`;let note=`Før endelig løsning bør plassering av sluk, vann, ventilasjon og eksisterende tekniske forhold kontrolleres.`;if(text)note+=` Kundens beskrivelse: «${text.slice(0,150)}${text.length>150?'…':''}»`;$('#aiNote').textContent=note;const visual=$('#visualPlan');if(visual)visual.innerHTML=planSvg(size,features);go(4)};const restart=$('#restart');if(restart)restart.onclick=()=>go(1);
