@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pedersenalexsander-gif.github.io/cool-website/sitemap.xml
